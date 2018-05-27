@@ -1,7 +1,17 @@
+
 import axios from 'axios';
 
 export class AuthenticationService
 {
+	sliderWebService()
+	{
+		return axios.get('http://help4loan.co.in/newsite/api/sliderImages').then(response => {
+			return response.data;
+		})
+		.catch(error => {
+			return error;
+		});
+	}
 	
 	loginUserWebService(email: string, pass: string)
 	{
@@ -9,12 +19,17 @@ export class AuthenticationService
 			email: email,
 			password: pass
 		};
-		console.log(parameters);
 		return axios.post('http://help4loan.co.in/newsite/api/auth', parameters).then(response => {
-			console.log(response.data.data);
+			return response.data;
 		})
 		.catch(error => {
-			console.log(error);
-		})
+			return error;
+		});
 	}
+	
+	registerUserWebService(fname: string, lname: string, email: string, mobile: string, city_id: any)
+	{
+		
+	}
+	
 }
