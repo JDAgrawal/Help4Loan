@@ -1,1 +1,18 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="left" [content]="content">
+  <ion-content height="100%">
+  	<div style="background-color: #157dbf; height: 100px;">
+  		<div style="border-radius: 50%; background-color: white; content:''; display: block; padding-top: 80px; width: 80px; left: 50%;">
+  		</div>
+  	</div>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <img src="{{p.img}}" width="50px" height="50px">
+        {{p.title}}
+      </button>
+    </ion-list>
+    <button ion-button no-padding no-margin full class="jd-button-bottom">LOGOUT</button>
+    <button></button>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>

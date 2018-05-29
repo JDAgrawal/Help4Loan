@@ -4,20 +4,22 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { AuthenticationService } from '../services/auth';
+import { WebServices } from '../services/webServices';
 import { UserDetails } from '../model-classes/userDetails';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
+import { HomeScreenPage } from '../pages/home-screen/home-screen';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
 		RegisterPage,
-		ForgotPasswordPage
+		ForgotPasswordPage,
+    HomeScreenPage
   ],
   imports: [
     BrowserModule,
@@ -28,13 +30,14 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     MyApp,
     LoginPage,
 		RegisterPage,
-		ForgotPasswordPage
+		ForgotPasswordPage,
+    HomeScreenPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-		AuthenticationService,
+		WebServices,
 		UserDetails
   ]
 })

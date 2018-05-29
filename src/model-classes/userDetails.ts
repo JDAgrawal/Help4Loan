@@ -44,4 +44,9 @@ export class UserDetails
 	{
 		return this.referral_id;
 	}
+
+	getCityId()
+	{
+		return this.city_id;
+	}
 }

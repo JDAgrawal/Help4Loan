@@ -1,9 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Slides, ToastController } from 'ionic-angular';
+
 import { RegisterPage } from '../register/register';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
-import { AuthenticationService } from '../../services/auth';
+import { HomeScreenPage } from '../home-screen/home-screen';
+
+import { WebServices } from '../../services/webServices';
 import { UserDetails } from '../../model-classes/userDetails';
+
+
 
 @IonicPage()
 @Component({
@@ -21,23 +26,24 @@ export class LoginPage
 	sldrImages = [];
 	registerPage = RegisterPage;
 	forgotPasswordPage = ForgotPasswordPage;
-	homePage = null;
+	homePage = HomeScreenPage;
 	regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 	
 	
   constructor(public navCtrl: NavController, 
 							 public navParams: NavParams, 
-							 private authService: AuthenticationService, 
+							 private webServices: WebServices, 
 							 private alertCtrl: AlertController, 
 							 private toastCtrl: ToastController, 
 							 private userDetails: UserDetails) 
-	{
+  {
+
   }
 
-  ionViewDidLoad() 
+	ionViewDidLoad() 
 	{
-    console.log('ionViewDidLoad LoginPage');
-		this.authService.sliderWebService().then(response => {
+		console.log('ionViewDidLoad LoginPage');
+		this.webServices.loginSliderWebService().then(response => {
 			console.log(response);
 			if (response.status == 1)
 			{
@@ -50,7 +56,7 @@ export class LoginPage
 		}).catch(error => {
 				console.log(error);
 		});
-  }
+	}
 
 	ionViewWillEnter()
 	{
@@ -94,7 +100,7 @@ export class LoginPage
 		else
 		{
 			//Making WebService Call
-			this.authService.loginUserWebService(this.email, this.password).then(
+			this.webServices.loginUserWebService(this.email, this.password).then(
 				response =>
 				{
 					console.log(response);
@@ -107,7 +113,7 @@ export class LoginPage
 							duration: 3000
 						});
 						toast.present();
-						this.navCtrl.push(this.homePage);
+						this.navCtrl.push(this.homePage, {city_id: this.userDetails.city_id, _token: this.userDetails.token, referral_id: this.userDetails.referral_id});
 					}
 					else if (response.status == 0)
 					{
