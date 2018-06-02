@@ -12,7 +12,7 @@
 		<button navPop style="background: url(../../assets/imgs/icon_back.png) no-repeat; background-size: cover; width: 30px; height: 30px; margin: 10px;"></button>
 		<span style="padding: 20px 0px; line-height: 50px; height: 50px;">Register</span>
 	</div> -->
-		<form>
+		<form #regForm="ngForm" (ngSubmit)="callRegisterWS(regForm)">
 			<br>
 			<br>
 			<br>
@@ -23,7 +23,7 @@
 						<img src="../../assets/imgs/icon_user.png" />
 					</ion-col>
 					<ion-col>
-						<ion-input type="text" placeholder="First Name"></ion-input>
+						<ion-input type="text" [(ngModel)]="fname" name="fname" placeholder="First Name" required></ion-input>
 					</ion-col>
 				</ion-row>
 				<ion-row>
@@ -31,7 +31,7 @@
 						<img src="../../assets/imgs/icon_user.png" />
 					</ion-col>
 					<ion-col>
-						<ion-input type="text" placeholder="Last Name"></ion-input>
+						<ion-input type="text" [(ngModel)]="lname" name="lname" placeholder="Last Name"></ion-input>
 					</ion-col>
 				</ion-row>
 				<ion-row>
@@ -39,7 +39,7 @@
 						<img src="../../assets/imgs/icon_email_black.png" />
 					</ion-col>
 					<ion-col>
-						<ion-input type="email" placeholder="Email Address"></ion-input>
+						<ion-input type="email" [(ngModel)]="email" name="email" placeholder="Email Address"></ion-input>
 					</ion-col>
 				</ion-row>
 				<ion-row>
@@ -47,20 +47,24 @@
 						<img src="../../assets/imgs/icon_phone_black.png" />
 					</ion-col>
 					<ion-col>
-						<ion-input type="phone" placeholder="Phone number"></ion-input>
+						<ion-input type="tel" [(ngModel)]="mobile" name="mobile" placeholder="Phone number"></ion-input>
 					</ion-col>
 				</ion-row>
 				<ion-row>
 					<ion-col col-1 padding-vertical>
 						<img src="../../assets/imgs/icon_location.png" />
 					</ion-col>
-					<ion-col>
-						<ion-input type="text" placeholder="Select City"></ion-input>
+					<ion-col padding-vertical (click)="showPopUp()">
+						{{city_name}}
+						<!-- <ion-select placeholder="Select a City" head="Select a City">
+							<ion-option *ngFor="let city of cityList" value="{{city.city_id}}">{{city.name}}</ion-option>
+  						</ion-select> -->
 					</ion-col>
 					<ion-col col-1 padding-vertical>
 						<img src="../../assets/imgs/icon_downarrow.png" />
 					</ion-col>
 				</ion-row>
+				<!-- <searchable-list></searchable-list> -->
 			</ion-grid>
 			</div>
 			<button ion-button no-padding no-margin full class="jd-button-bottom" type="submit">REGISTER</button>

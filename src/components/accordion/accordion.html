@@ -1,0 +1,13 @@
+<ion-card>
+	<ion-card-header (click)="toggleAccordion()">
+		<ion-row>
+			<ion-col col-10 style="font-size: small;" text-wrap>
+				<strong>{{heading}}</strong>
+			</ion-col>
+			<ion-col col-2>
+				<img src="../../assets/imgs/icon_downarrow.png"/>
+			</ion-col>
+		</ion-row>
+	</ion-card-header>
+	<ion-card-content #cardContent>{{content}}</ion-card-content>
+</ion-card>

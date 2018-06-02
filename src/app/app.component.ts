@@ -5,6 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { HomeScreenPage } from '../pages/home-screen/home-screen';
+import { FAQPage } from '../pages/f-a-q/f-a-q';
+import { ProfilePage } from '../pages/profile/profile';
+import { RequestStatusPage } from '../pages/request-status/request-status';
+import { ChangePasswordPage } from '../pages/change-password/change-password';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,19 +34,19 @@ export class MyApp
     },{
       img: '../assets/imgs/icon_user.png',
       title: 'Profile',
-      component: HomeScreenPage
+      component: ProfilePage
     },{
       img: '../assets/imgs/icon_request_status.png',
       title: 'Request Status',
-      component: HomeScreenPage
+      component: RequestStatusPage
     },{
       img: '../assets/imgs/icon_change_password.png',
       title: 'Change Password',
-      component: HomeScreenPage
+      component: ChangePasswordPage
     },{
       img: '../assets/imgs/icon_faq.png',
       title: 'FAQ',
-      component: HomeScreenPage
+      component: FAQPage
     }];
   }
 

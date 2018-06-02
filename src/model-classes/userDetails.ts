@@ -40,13 +40,4 @@ export class UserDetails
 		this.type = jsonObj.type;
 	}
 	
-	getReferralId()
-	{
-		return this.referral_id;
-	}
-
-	getCityId()
-	{
-		return this.city_id;
-	}
 }

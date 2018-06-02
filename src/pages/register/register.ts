@@ -1,25 +1,44 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { WebServices } from '../../services/webServices';
+
+import { SearchableListComponent } from '../../components/searchable-list/searchable-list';
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+    selector: 'page-register',
+    templateUrl: 'register.html',
 })
-export class RegisterPage {
+export class RegisterPage 
+{
+    city_name = "Select City";
+    cityList = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(public navCtrl: NavController, 
+        public navParams: NavParams, 
+        private webServices: WebServices,
+        private modalCtrl: ModalController) 
+    {
+        this.cityList = [];
+        this.webServices.cityListWebService().then(cityList => {
+            this.cityList = cityList.data;
+            console.log(this.cityList);
+        });
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad RegisterPage');
+    }
 
+    callRegisterWS(regForm)
+    {
+    	console.log(regForm.value);
+    }
+
+    showPopUp()
+    {
+        console.log('Popup');
+        this.modalCtrl.create('SearchableListComponent').present();
+    }
 }

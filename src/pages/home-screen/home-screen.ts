@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+
 import { UserDetails } from '../../model-classes/userDetails';
 import { WebServices } from '../../services/webServices';
 
@@ -16,6 +17,8 @@ export class HomeScreenPage
 	cityId: any;
 	city: string;
 	sldrImages = [];
+	products = [{}];
+	// product_imgs = [];
 	
 
 	constructor(public navCtrl: NavController, 
@@ -27,6 +30,19 @@ export class HomeScreenPage
 		console.log(this.cityId);
 		this.webServices.getCityNameWebService(this.cityId).then( cityName => {
 			this.city = cityName;
+		});
+		this.webServices.productsWebService(this.userDetails.referral_id, this.userDetails.token).then( response => {
+			this.products = [{}];
+			// this.product_imgs = [];
+			if (response.data.length)
+			{
+				console.log(response.data);
+				this.products = response.data;
+				// response.data.forEach(product =>{
+				// 	this.product_imgs.push(product.product_image);
+				// });
+				console.log(this.products);
+			}
 		});
 	}
 
