@@ -1,3 +1,27 @@
-page-request-status {
+page-request-status 
+{
+    .segment-button 
+    {
+        background-color: #157dbf !important;
+        color: white !important;
+        border-color: white !important;
+        border-radius: 0px !important;
+        border-top: 0px !important;
+        border-left: 0px !important;
+        border-bottom: 0px !important;
+        border-right: 1px solid white !important;
+    }
+    .segment-activated 
+    {
+        background-color: white !important;
+        color: #157dbf !important;
+        border-right: 1px solid white !important;
+    }
 
+    .segment-button:last-of-type
+    {
+        border-color: white !important;
+        border-radius: 0px !important;
+        border: 0px !important;
+    }
 }

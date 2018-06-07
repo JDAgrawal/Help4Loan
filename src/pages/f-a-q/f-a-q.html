@@ -11,7 +11,7 @@
 	    	<button style="background: url(../../assets/imgs/icon_phone_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px 0px 10px 0px;"></button>
 	    </ion-col>
 	    <ion-col col-2 no-padding>
-	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px ;"></button>
+	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px ;" [navPush]="requestStatus"></button>
 	    </ion-col>
 	 </ion-row>
 	 <div *ngFor="let FAQ of FAQList">

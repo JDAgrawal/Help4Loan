@@ -1,3 +1,15 @@
-page-home-screen {
-
+page-home-screen 
+{
+    .swiper-pagination-bullet-active
+    {
+        background: white;
+    }
+    .swiper-pagination-bullet
+    {
+        background: colors($colors, primary);
+    }
+    // ion-spinner {
+    //     display: block;
+    //     margin: auto;
+    // }
 }

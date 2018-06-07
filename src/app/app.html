@@ -5,13 +5,12 @@
   		</div>
   	</div>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <img src="{{p.img}}" width="50px" height="50px">
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)" menuClose>
+        <img src="{{p.img}}" style="width: 50px; height: 50px;">
         {{p.title}}
       </button>
     </ion-list>
-    <button ion-button no-padding no-margin full class="jd-button-bottom">LOGOUT</button>
-    <button></button>
+    <button ion-button no-padding no-margin full class="jd-button-bottom" (click)="logoutTUI()" menuClose>LOGOUT</button>
   </ion-content>
 </ion-menu>
 

@@ -1,6 +1,6 @@
 
 <ion-content>
-	<ion-row no-padding style="background-color: #157dbf; width: 100%; height: 50px; color: white">
+	<ion-row no-padding style="background: url('../../assets/imgs/header.png'); width: 100%; height: 50px; color: white">
 	    <ion-col col-2 no-padding>
 	      <button style="background: url(../../assets/imgs/icon_menu.png) no-repeat; background-size: contain; width: 50px; height: 30px; margin: 10px 0px 10px 10px;" menuToggle></button>
 	    </ion-col>
@@ -11,12 +11,12 @@
 	    	<button style="background: url(../../assets/imgs/icon_phone_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px 0px 10px 0px;"></button>
 	    </ion-col>
 	    <ion-col col-2 no-padding>
-	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px ;"></button>
+	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px ;" [navPush]="requestStatus"></button>
 	    </ion-col>
 	 </ion-row>
 	 <ion-row style="background: #fff; height: 5px;">
 	 </ion-row>
-	 <ion-row style="background-color: #0df; height: 30px; color: #fff; padding: 5px 10px">
+	 <ion-row style="background-color: #157dbf; height: 30px; color: #fff; padding: 5px 10px">
 		PERSONAL DETAILS
 	 </ion-row>
 	 <form #updateForm="ngForm" (ngSubmit)="callUpdateProfileWS(updateForm)">
@@ -27,7 +27,7 @@
 					<img src="../../assets/imgs/icon_user.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="fname" name="fname" placeholder="First Name" required></ion-input>
+					<ion-input type="text" [(ngModel)]="fname" name="fname" placeholder="First Name" value="{{fname}}" required></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -35,7 +35,7 @@
 					<img src="../../assets/imgs/icon_user.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="lname" name="lname" placeholder="Last Name"></ion-input>
+					<ion-input type="text" [(ngModel)]="lname" name="lname" placeholder="Last Name" value="{{lname}}"></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -43,7 +43,7 @@
 					<img src="../../assets/imgs/icon_email_black.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="email" [(ngModel)]="email" name="email" placeholder="Email Address"></ion-input>
+					<ion-input type="email" [(ngModel)]="email" name="email" placeholder="Email Address" value="{{email}}"></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -51,12 +51,12 @@
 					<img src="../../assets/imgs/icon_phone_black.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="tel" [(ngModel)]="mobile" name="mobile" placeholder="Phone number"></ion-input>
+					<ion-input type="tel" [(ngModel)]="mobile" name="mobile" placeholder="Phone number" value="{{mobile}}"></ion-input>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	 </ion-row>
-	 <ion-row style="background-color: color($colors, primary; height: 30px; color: #fff; padding: 5px 10px">
+	 <ion-row style="background-color: #157dbf; height: 30px; color: #fff; padding: 5px 10px">
 		BANKING DETAILS
 	 </ion-row>
 	 <ion-row>
@@ -66,7 +66,7 @@
 					<img src="../../assets/imgs/icon_bank.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="bank_name" name="bank_name" placeholder="Bank Name" required></ion-input>
+					<ion-input type="text" [(ngModel)]="bank_name" name="bank_name" placeholder="Bank Name" value="{{bank_name}}" required></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -74,7 +74,7 @@
 					<img src="../../assets/imgs/icon_bank.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="branch_name" name="branch_name" placeholder="Branch Name"></ion-input>
+					<ion-input type="text" [(ngModel)]="branch_name" name="branch_name" placeholder="Branch Name" value="{{branch_name}}"></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -82,7 +82,7 @@
 					<img src="../../assets/imgs/icon_account_number.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="account_number" name="account_number" placeholder="Account Number"></ion-input>
+					<ion-input type="text" [(ngModel)]="account_no" name="account_number" placeholder="Account Number" value="{{account_no}}"></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>
@@ -90,7 +90,7 @@
 					<img src="../../assets/imgs/icon_ifsc_code.png" />
 				</ion-col>
 				<ion-col>
-					<ion-input type="text" [(ngModel)]="ifsc_code" name="ifsc_code" placeholder="IFSC Code"></ion-input>
+					<ion-input type="text" [(ngModel)]="ifsc_code" name="ifsc_code" placeholder="IFSC Code" value="{{ifsc_code}}"></ion-input>
 				</ion-col>
 			</ion-row>
 			<ion-row>

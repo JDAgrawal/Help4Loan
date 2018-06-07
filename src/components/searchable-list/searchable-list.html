@@ -1,9 +1,13 @@
 
-<ion-content>
-	<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-	<ion-list>
-		<ion-item *ngFor="let item of items">
-		{{ item }}
-		</ion-item>
-	</ion-list>
+<ion-content (click)="closeModal()" style="background-color: transparent;">
+	<div #PopUp id="jdPopUp">
+		<!-- <ion-header class="bar-light bar-subheader"> -->
+		<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+		<!-- </ion-header> -->
+		<ion-list>
+			<ion-item *ngFor="let state of statesList; let i = index" (click)="selectCity(state, i)">
+			{{ state }}
+			</ion-item>
+		</ion-list>
+	</div>
 </ion-content>

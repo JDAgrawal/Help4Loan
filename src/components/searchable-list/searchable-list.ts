@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ViewController, NavParams } from 'ionic-angular';
 
 @Component({
 	selector: 'searchable-list',
@@ -8,25 +9,40 @@ import { Component } from '@angular/core';
 export class SearchableListComponent 
 {
 
-	searchQuery: string = '';
-	items: string[];
+	@ViewChild('PopUp') popUp: any;
 
-	constructor() 
+	searchQuery: string = '';
+	items: any;
+	statesList = [];
+
+	constructor(private viewCtrl: ViewController,
+				private navParams: NavParams) 
 	{
+		
+	}
+
+	ionViewDidLoad()
+	{
+		this.items = this.navParams.get('data');
+		console.log(this.items);
 		this.initializeItems();
 	}
 
 	initializeItems() 
 	{
-		this.items = [
-			'Amsterdam',
-			'Bogota',
-			'asdfghj',
-			'Ahmedabad',
-			'Vadodra',
-			'Bihar',
-			'Mumbai'
-		];
+		// this.items = [
+		// 	'Amsterdam',
+		// 	'Bogota',
+		// 	'asdfghj',
+		// 	'Ahmedabad',
+		// 	'Vadodra',
+		// 	'Bihar',
+		// 	'Mumbai'
+		// ];
+		this.statesList = [];
+		this.items.forEach(element => {
+			this.statesList.push(element.name); 
+		});
 	}
 
 	getItems(ev: any) 
@@ -40,11 +56,23 @@ export class SearchableListComponent
 		// if the value is an empty string don't filter the items
 		if (val && val.trim() != '') 
 		{
-		  this.items = this.items.filter((item) => {
+			this.statesList = this.statesList.filter((item) => {
 		    return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-		  })
+		  });
 		}
 	}
 
+	selectCity(state, i)
+	{
+		console.log(state);
+		this.viewCtrl.dismiss(this.items[i]);
+	}
 
+	closeModal()
+	{
+		if (!this.popUp.nativeElement.contains(event.target))
+		{
+			this.viewCtrl.dismiss();
+		}
+	}
 }

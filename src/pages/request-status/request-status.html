@@ -1,6 +1,6 @@
 
 <ion-content>
-	<ion-row no-padding style="background-color: #157dbf; width: 100%; height: 50px; color: white">
+	<ion-row no-padding style="background: url('../../assets/imgs/header.png'); width: 100%; height: 50px; color: white">
 	    <ion-col col-2 no-padding>
 	      <button style="background: url(../../assets/imgs/icon_menu.png) no-repeat; background-size: contain; width: 50px; height: 30px; margin: 10px 0px 10px 10px;" menuToggle></button>
 	    </ion-col>
@@ -11,17 +11,81 @@
 	    	<button style="background: url(../../assets/imgs/icon_phone_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px 0px 10px 0px;"></button>
 	    </ion-col>
 	    <ion-col col-2 no-padding>
-	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px ;"></button>
+	    	<button style="background: url(../../assets/imgs/icon_email_white.png) no-repeat; background-size: contain; width: 30px; height: 30px; margin: 10px;" [navPush]="requestStatus"></button>
 	    </ion-col>
 	 </ion-row>
-	 <ion-row no-padding style="height:50px;">
-	 	<ion-col col-3 style="background-color: map-get($colors, primary); border-right: 1px solid #fff;">
+	 <!-- <ion-row no-padding style="height:30px;" text-center>
+	 	<ion-col #activeTab col-3 style="background: #157dbf; border-right: 1px solid #fff; color: #fff" (click)="activeTabTUI()">
+			 Active
 	 	</ion-col>
-	 	<ion-col col-3 style="background: #0de; border-right: 1px solid #fff;">
+	 	<ion-col #completedTab col-3 style="background: #157dbf; border-right: 1px solid #fff; color: #fff" (click)="completedTabTUI()">
+			 Completed
 	 	</ion-col>
-	 	<ion-col col-3 style="background: #0de; border-right: 1px solid #fff;">
+	 	<ion-col #rejectedTab col-3 style="background: #157dbf; border-right: 1px solid #fff; color: #fff" (click)="rejectedTabTUI()">
+			 Rejected
 	 	</ion-col>
-	 	<ion-col col-3 style="background: #0de;">
+	 	<ion-col #pendingTab col-3 style="background: #157dbf; color: #fff" (click)="pendingTabTUI()" value="pending">
+			 Pending
 	 	</ion-col>
 	 </ion-row>
+     <ion-row style="height: 1px; background-color: black;"></ion-row> -->
+    <ion-segment [(ngModel)]="reqStat" (ionChange)="segmentChanged()">
+        <ion-segment-button value="active" aria-pressed="true">
+            Active
+        </ion-segment-button>
+        <ion-segment-button value="completed">
+            Completed
+        </ion-segment-button>
+        <ion-segment-button value="rejected">
+            Rejected
+        </ion-segment-button>
+        <ion-segment-button value="pending">
+            Pending
+        </ion-segment-button>
+    </ion-segment>
+	<div [ngSwitch]="reqStat">
+		<ion-list *ngSwitchCase="'active'">
+			<ion-item *ngFor="let data of activeArr">
+                <ion-row>
+                    <ion-col>
+                        <p>{{data.customer_name}}</p>
+                    </ion-col>
+                    <ion-col>
+                        <p>{{data.customer_mobile}}</p>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <p>
+                        {{data.message}}
+                    </p>
+                </ion-row>
+			</ion-item>
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'completed'">
+			<ion-item>
+				<ion-thumbnail item-start>
+					<img src="#">
+				</ion-thumbnail>
+				<h2>Luna</h2>
+			</ion-item>
+        </ion-list>
+        
+        <ion-list *ngSwitchCase="'rejected'">
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="#">
+                </ion-thumbnail>
+                <h2>ABC</h2>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'pending'">
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="#">
+                </ion-thumbnail>
+                <h2>XYSZ</h2>
+            </ion-item>
+        </ion-list>
+	</div>
 </ion-content>

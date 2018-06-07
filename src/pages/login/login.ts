@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Slides, ToastController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 import { RegisterPage } from '../register/register';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
@@ -12,46 +13,50 @@ import { UserDetails } from '../../model-classes/userDetails';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+	selector: 'page-login',
+	templateUrl: 'login.html',
 })
 
 export class LoginPage 
 {
 	@ViewChild(Slides) slides: Slides;
-	
-	
+
+
 	email: string;
 	password: string;
-	sldrImages = [];
+	sldrImages: any;
 	registerPage = RegisterPage;
 	forgotPasswordPage = ForgotPasswordPage;
 	homePage = HomeScreenPage;
 	regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	loader: any;
 	
-	
-  constructor(public navCtrl: NavController, 
-							 public navParams: NavParams, 
-							 private webServices: WebServices, 
-							 private alertCtrl: AlertController, 
-							 private toastCtrl: ToastController, 
-							 private userDetails: UserDetails) 
-  {
+	constructor(public navCtrl: NavController, 
+				public navParams: NavParams, 
+				private webServices: WebServices, 
+				private alertCtrl: AlertController, 
+				private toastCtrl: ToastController, 
+				private userDetails: UserDetails,
+				private loadingCtrl: LoadingController) 
+	{
 
-  }
+	}
 
 	ionViewDidLoad() 
 	{
 		console.log('ionViewDidLoad LoginPage');
+		this.loader = this.loadingCtrl.create();
+		this.loader.present();
 		this.webServices.loginSliderWebService().then(response => {
-			console.log(response);
+			// console.log(response);
 			if (response.status == 1)
 			{
 				this.sldrImages = [];
 				response.data.forEach(imageObj =>{
 					this.sldrImages.push(imageObj.image_url);
 				});
-				console.log(this.sldrImages);
+				this.loader.dismiss();
+				// console.log(this.sldrImages);
 			}
 		}).catch(error => {
 				console.log(error);
@@ -99,11 +104,14 @@ export class LoginPage
 		}
 		else
 		{
+			this.loader = this.loadingCtrl.create();
+			this.loader.present();
 			//Making WebService Call
 			this.webServices.loginUserWebService(this.email, this.password).then(
 				response =>
 				{
-					console.log(response);
+					this.loader.dismiss();
+					// console.log(response);
 					if (response.status == 1)
 					{
 						this.userDetails.generateObject(response.data);

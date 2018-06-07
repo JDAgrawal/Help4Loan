@@ -16,7 +16,7 @@ export class HomeScreenPage
 
 	cityId: any;
 	city: string;
-	sldrImages = [];
+	sldrImages: any;
 	products = [{}];
 	// product_imgs = [];
 	
